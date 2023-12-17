@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+  apiKey:"AIzaSyBGGg7JgdGw-5oH2Q0uu2pd4sSTBGvYMls",
+  authDomain: "chefrecipes-53dee.firebaseapp.com",
+  projectId:"chefrecipes-53dee",
+  storageBucket: "chefrecipes-53dee.appspot.com",
+  messagingSenderId:"353382124497",
+  appId: "1:353382124497:web:f3993f748422540b09aef0",
+  measurementId:"G-D8YFT74YHH"
 };
 
 const app = initializeApp(firebaseConfig);
