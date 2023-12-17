@@ -2,7 +2,6 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 import Link from 'next/link';
-import Image from 'next/image';
 import { errorImg } from '@/data/images';
 
 const NotFound = () => {

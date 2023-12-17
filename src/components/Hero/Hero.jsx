@@ -1,5 +1,5 @@
 import React from "react";
-import { heroVector } from "@/data/images";
+import { heroChefImg, heroVector } from "@/data/images";
 
 const Hero = () => {
   
@@ -20,7 +20,6 @@ const Hero = () => {
       >
         <div className="container pb-8 sm:pb-0">
           <div className="grid grid-cols-1 sm:grid-cols-2">
-            {/* text content section */}
             <div
               data-aos="zoom-out"
               data-aos-duration="400"
@@ -39,12 +38,11 @@ const Hero = () => {
               <div>
               </div>
             </div>
-            {/* Image section */}
             <div className=" flex justify-center items-center relative order-1 sm:order-2 ">
               <div className="overflow-hidden flex justify-center items-center">
                 <img
-                  src="https://res.cloudinary.com/dkjn33zdf/image/upload/v1702794955/biryani-indian-cuisine-chef-restaurant-bityani-341f24136222cc5b6204bb970fd1712d_npibys.png"
-                  alt="biryani img"
+                  src={heroChefImg}
+                  alt="Chef img"
                   width={400}
                 />
               </div>

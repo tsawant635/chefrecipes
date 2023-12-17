@@ -1,4 +1,3 @@
-// ChefRecipes.js
 import { React, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
@@ -19,7 +18,6 @@ const ChefRecipes = () => {
     return [];
   });
 
-  // State for custom toast message
   const [toastMessage, setToastMessage] = useState("");
 
   // Function to handle marking a recipe as a favorite
@@ -35,22 +33,18 @@ const ChefRecipes = () => {
         "favoriteRecipes",
         JSON.stringify(favoriteRecipes.filter((name) => name !== recipeName))
       );
-      // Show a success toast message
       setToastMessage("Recipe removed from your favorites!");
     } else {
       // Mark the recipe as a favorite
       setFavoriteRecipes((prevFavorites) => [...prevFavorites, recipeId]);
-      // Save the favorite recipe name to local storage
       localStorage.setItem(
         "favoriteRecipes",
         JSON.stringify([...favoriteRecipes, recipeName])
       );
-      // Show a success toast message
       setToastMessage("Recipe marked as your favorite!");
     }
   };
 
-  // Effect to clear the toast message after a delay
   useEffect(() => {
     if (toastMessage) {
       const timeoutId = setTimeout(() => {
@@ -68,7 +62,6 @@ const ChefRecipes = () => {
   return (
     <>
       <Navbar />
-      {/* Custom Toast Message */}
       {toastMessage && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white py-2 px-4 rounded-md">
           {toastMessage}

@@ -1,10 +1,11 @@
-// pages/login.js
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 import { signInWithEmailAndPassword, GithubAuthProvider ,signInWithPopup ,GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/config/firebase';
+import { githubLogo, googleSign } from '@/data/images';
 
 const Login = () => {
   const router = useRouter();
@@ -13,7 +14,6 @@ const Login = () => {
     email: '',
     password: '',
   });
-
   const [error, setError] = useState(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false)
 
@@ -26,8 +26,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Clear previous errors
     setError(null);
 
     // Validation
@@ -35,14 +33,11 @@ const Login = () => {
       setError('Email and Password are required');
       return;
     }
-
-      // Set isLoggingIn to true while logging in
       setIsLoggingIn(true);
 
     try {
       // Sign in with email and password
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
-
       // Redirect to home page after successful login
       localStorage.setItem('isUserSignedIn',true);
       const user = auth.currentUser;
@@ -53,7 +48,6 @@ const Login = () => {
     } catch (error) {
       setError(error.message);
     }finally {
-        // Set isLoggingIn back to false after login attempt
         setIsLoggingIn(false);
       }
   };
@@ -62,13 +56,12 @@ const Login = () => {
     try {
       const provider = new GoogleAuthProvider();
       const userCredential = await signInWithPopup(auth, provider);
-
       localStorage.setItem('isUserSignedIn',true);
       const user = auth.currentUser;
       localStorage.setItem('displayName', user.displayName)
       localStorage.setItem('photoURL', user.photoURL)
 
-      // Redirect to home or user details page after successful login
+ 
       router.push('/');
     } catch (error) {
       setError(error.message);
@@ -78,14 +71,12 @@ const Login = () => {
   const handleGitHubSignIn = async () => {
     try {
       const provider = new GithubAuthProvider();
-      const userCredential = await signInWithPopup(auth, provider);
-  
+      const userCredential = await signInWithPopup(auth, provider);  
       localStorage.setItem('isUserSignedIn', true);
       const user = auth.currentUser;
       localStorage.setItem('displayName', user.displayName);
       localStorage.setItem('photoURL', user.photoURL);
   
-      // Redirect to home or user details page after successful login
       router.push('/');
     } catch (error) {
       setError(error.message);
@@ -132,7 +123,7 @@ const Login = () => {
           <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          disabled={isLoggingIn} // Disable the button while logging in
+          disabled={isLoggingIn}
         >
           {isLoggingIn ? 'Logging in...' : 'Login'}
         </button>
@@ -144,12 +135,11 @@ const Login = () => {
           </a>
         </p>
 
-          {/* Google Sign-In Button */}
        <button
        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center gap-2"
        onClick={handleGoogleSignIn}
      >
-       <img src={"https://res.cloudinary.com/dkjn33zdf/image/upload/v1702813195/transparent-google-suite-icon-google-icon-5f7f985ccd60e3.5687494416021975968412_jiayqe.png"} alt="Google Icon" className="w-6 h-6" />
+       <img src={googleSign} alt="Google Icon" className="w-6 h-6" />
        Sign In with Google
      </button>
 
@@ -157,7 +147,7 @@ const Login = () => {
      className="mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 flex items-center gap-2"
      onClick={handleGitHubSignIn}
    >
-     <img src="https://res.cloudinary.com/dkjn33zdf/image/upload/v1702814399/GitHub-Mark-ea2971cee799_tcaptt.png" alt="GitHub Icon" className="w-6 h-6" />
+     <img src={githubLogo} alt="GitHub Icon" className="w-6 h-6" />
      Sign In with GitHub
    </button>
       </div>

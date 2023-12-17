@@ -1,5 +1,5 @@
-import { appStore, biryani, playStore } from "@/data/images";
 import React from "react";
+import { appStore, biryani, playStore } from "@/data/images";
 
 const AppStore = () => {
   return (
