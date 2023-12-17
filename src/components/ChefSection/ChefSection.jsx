@@ -1,57 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
-const ChefData = [
-  {
-    id: 1,
-    img: "https://res.cloudinary.com/dkjn33zdf/image/upload/v1702791448/Screenshot_2023-12-17_110608_iuywiq.png",
-    name: "Chef Arjun Kapoor",
-    experience: 10,
-    recipes: 50,
-    likes: 200,
-  },
-  {
-    id: 2,
-    img: "https://res.cloudinary.com/dkjn33zdf/image/upload/v1702791448/Screenshot_2023-12-17_110608_iuywiq.png",
-    name: "Chef Priya Sharma",
-    experience: 8,
-    recipes: 40,
-    likes: 150,
-  },
-  {
-    id: 3,
-    img: "https://res.cloudinary.com/dkjn33zdf/image/upload/v1702791448/Screenshot_2023-12-17_110608_iuywiq.png",
-    name: "Chef Rajesh Patel",
-    experience: 12,
-    recipes: 60,
-    likes: 250,
-  },
-  {
-    id: 4,
-    img: "https://res.cloudinary.com/dkjn33zdf/image/upload/v1702791448/Screenshot_2023-12-17_110608_iuywiq.png",
-    name: "Chef Ananya Singh",
-    experience: 10,
-    recipes: 50,
-    likes: 200,
-  },
-  {
-    id: 5,
-    img: "https://res.cloudinary.com/dkjn33zdf/image/upload/v1702791448/Screenshot_2023-12-17_110608_iuywiq.png",
-    name: "Chef Vikram Kapoor",
-    experience: 8,
-    recipes: 40,
-    likes: 150,
-  },
-  {
-    id: 6,
-    img: "https://res.cloudinary.com/dkjn33zdf/image/upload/v1702791448/Screenshot_2023-12-17_110608_iuywiq.png",
-    name: "Chef Aishwarya Singh",
-    experience: 12,
-    recipes: 60,
-    likes: 250,
-  },
-  // Add more chef data as needed
-];
+import { ChefData } from "@/data/data";
 
 const ChefSection = () => {
   return (
@@ -76,11 +25,13 @@ const ChefSection = () => {
                 data-aos-duration="300"
                 className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[300px]"
               >
-                <div className="">
+                <div>
                   <img
                     src={chef.img}
                     alt={chef.name}
-                    className=""
+                    width={300}
+                    height={300}
+                    className="object-cover max-h-[260px] rounded-t-2xl"
                   />
                 </div>
                 <div className="p-4 text-center">
@@ -89,14 +40,14 @@ const ChefSection = () => {
                     {chef.experience} Years of Experience
                   </p>
                   <p className="text-gray-500 text-sm mb-2">
-                    {chef.recipes} Recipes Created
+                    {chef.recipes.length} Recipes Created
                   </p>
                   <p className="text-gray-500 text-sm mb-4">{chef.likes} Likes</p>
                   <Link href={`/chef/${chef.id}`}>
-                  <div className="bg-primary text-white py-2 px-4 rounded-full">
-                    View Recipes
-                  </div>
-                </Link>
+                    <div className="bg-primary text-white py-2 px-4 rounded-full">
+                      View Recipes
+                    </div>
+                  </Link>
                 </div>
               </div>
             ))}

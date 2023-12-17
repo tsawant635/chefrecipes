@@ -1,7 +1,5 @@
+import { appStore, biryani, playStore } from "@/data/images";
 import React from "react";
-import AppStoreImg from "../../assets/app_store.png";
-import PlayStoreImg from "../../assets/play_store.png";
-import Gif from "../../assets/mobile_bike.gif";
 
 const AppStore = () => {
   return (
@@ -20,14 +18,14 @@ const AppStore = () => {
               <div className="flex flex-wrap justify-center sm:justify-start items-center">
                 <a href="#">
                   <img
-                    src={PlayStoreImg}
+                    src={playStore}
                     alt="Play store"
                     className="max-w-[150px] sm:max-w-[120px] md:max-w-[200px]"
                   />
                 </a>
                 <a href="#">
                   <img
-                    src={AppStoreImg}
+                    src={appStore}
                     alt="App store"
                     className="max-w-[150px] sm:max-w-[120px] md:max-w-[200px]"
                   />
@@ -36,7 +34,7 @@ const AppStore = () => {
             </div>
             <div data-aos="zoom-in" data-aos-duration="300">
               <img
-                src={Gif}
+                src={biryani}
                 alt="mobile bike"
                 className="w-full sm:max-w-[60%] block rounded-md mx-auto mix-blend-multiply dark:mix-blend-difference"
               />

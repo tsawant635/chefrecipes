@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
-import { signInWithEmailAndPassword, GithubAuthProvider ,signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, GithubAuthProvider ,signInWithPopup ,GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/config/firebase';
 
 const Login = () => {
@@ -15,6 +15,7 @@ const Login = () => {
   });
 
   const [error, setError] = useState(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -35,6 +36,9 @@ const Login = () => {
       return;
     }
 
+      // Set isLoggingIn to true while logging in
+      setIsLoggingIn(true);
+
     try {
       // Sign in with email and password
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
@@ -48,7 +52,10 @@ const Login = () => {
       router.push('/');
     } catch (error) {
       setError(error.message);
-    }
+    }finally {
+        // Set isLoggingIn back to false after login attempt
+        setIsLoggingIn(false);
+      }
   };
 
   const handleGoogleSignIn = async () => {
@@ -123,11 +130,12 @@ const Login = () => {
             />
           </div>
           <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          >
-            Login
-          </button>
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          disabled={isLoggingIn} // Disable the button while logging in
+        >
+          {isLoggingIn ? 'Logging in...' : 'Login'}
+        </button>
         </form>
         <p className="mt-4 text-sm">
           Don't have an account?{' '}
